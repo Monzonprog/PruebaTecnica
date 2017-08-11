@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">"Prueba Técnica "</string>
+    <string name="seleccionarIdioma">Selecciona tu idioma / Select your language</string>
+    <string name="espanol">Español</string>
+    <string name="ingles">English</string>
+    <string name="prueba">Prueba</string>
+</resources>
