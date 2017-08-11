@@ -5,7 +5,10 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 import jorgemonzon.pruebatecnica.Class.ListaUsersObject;
+import jorgemonzon.pruebatecnica.Class.UserItem;
 import jorgemonzon.pruebatecnica.Interfaces.IDataListaUsers;
 import jorgemonzon.pruebatecnica.Interfaces.RestClient;
 import retrofit2.Call;
@@ -41,13 +44,13 @@ public class ConexionManager {
 
     public void getListaUsers(IDataListaUsers listener){
         listaUsersListener = listener;
-        Call<ListaUsersObject> call = restClient.getListaUsers();
-        call.enqueue(new Callback<ListaUsersObject>() {
+        Call<List<UserItem>> call = restClient.getListaUsers();
+        call.enqueue(new Callback<List<UserItem>>() {
             @Override
-            public void onResponse(Call<ListaUsersObject> call, Response<ListaUsersObject> response) {
+            public void onResponse(Call<List<UserItem>> call, Response<List<UserItem>> response) {
                 switch (response.code()) {
                     case 200:
-                        ListaUsersObject data = response.body();
+                        List<UserItem> data = response.body();
                         listaUsersListener.conexionCorrecta(data);
                         break;
                     case 401:
@@ -61,7 +64,7 @@ public class ConexionManager {
             }
 
             @Override
-            public void onFailure(Call<ListaUsersObject> call, Throwable t) {
+            public void onFailure(Call<List<UserItem>> call, Throwable t) {
                 listaUsersListener.conexionIncorrecta();
 
                 Log.e("error", t.toString());

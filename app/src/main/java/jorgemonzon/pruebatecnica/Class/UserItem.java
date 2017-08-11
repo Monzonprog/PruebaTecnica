@@ -6,12 +6,21 @@ package jorgemonzon.pruebatecnica.Class;
 
 public class UserItem {
 
+    private String $type;
     private int ID;
     private String Name;
     private DateTime Birthdate;
 
     public UserItem(){
 
+    }
+
+    public void set$type(String $type) {
+        this.$type = $type;
+    }
+
+    public String get$type() {
+        return $type;
     }
 
     public int getID() {

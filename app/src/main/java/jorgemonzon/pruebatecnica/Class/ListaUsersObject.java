@@ -1,6 +1,6 @@
 package jorgemonzon.pruebatecnica.Class;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jorge on 11/08/17.
@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 public class ListaUsersObject {
 
-    private ArrayList<UserItem> ListaUsuarios;
+    private List<UserItem> ListaUsuarios;
 
     public ListaUsersObject() {
     }
 
-    public ArrayList<UserItem> getListaUsuarios() {
+    public List<UserItem> getListaUsuarios() {
         return ListaUsuarios;
     }
 
-    public void setListaUsuarios(ArrayList<UserItem> listaUsuarios) {
+    public void setListaUsuarios(List<UserItem> listaUsuarios) {
         ListaUsuarios = listaUsuarios;
     }
 }

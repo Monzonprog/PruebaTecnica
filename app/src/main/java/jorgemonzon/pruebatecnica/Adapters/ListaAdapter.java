@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jorgemonzon.pruebatecnica.Class.UserItem;
 import jorgemonzon.pruebatecnica.R;
@@ -17,7 +18,7 @@ import jorgemonzon.pruebatecnica.R;
 
 public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.UsuariosViewHolder> {
 
-    private ArrayList<UserItem> items;
+    private List<UserItem> items;
 
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder {
 
@@ -33,7 +34,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.UsuariosView
         }
     }
 
-    public ListaAdapter(ArrayList<UserItem> items){
+    public ListaAdapter(List<UserItem> items){
 
         this.items = items;
 

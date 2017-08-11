@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jorgemonzon.pruebatecnica.Adapters.ListaAdapter;
 import jorgemonzon.pruebatecnica.Class.ListaUsersObject;
@@ -16,7 +17,7 @@ import jorgemonzon.pruebatecnica.Utils.ConexionManager;
 
 public class MenuActivity extends AppCompatActivity implements IDataListaUsers{
 
-    private ArrayList<UserItem> usuarios;
+    private List<UserItem> usuarios;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
@@ -29,6 +30,7 @@ public class MenuActivity extends AppCompatActivity implements IDataListaUsers{
         obtenerListaUsuarios();
 
         pintarListaUsuarios();
+
 
     }
 
@@ -53,9 +55,9 @@ public class MenuActivity extends AppCompatActivity implements IDataListaUsers{
     }
 
     @Override
-    public void conexionCorrecta(ListaUsersObject listaUsuarios) {
+    public void conexionCorrecta(List<UserItem> listaUsuarios) {
 
-        usuarios = listaUsuarios.getListaUsuarios();
+        usuarios = listaUsuarios;
 
 
     }
