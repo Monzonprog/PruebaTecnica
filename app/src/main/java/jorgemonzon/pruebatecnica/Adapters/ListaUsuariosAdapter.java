@@ -14,7 +14,7 @@ import jorgemonzon.pruebatecnica.R;
  * Created by jorge on 11/08/17.
  */
 
-public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.UsuariosViewHolder> {
+public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdapter.UsuariosViewHolder> {
 
     private List<UserItem> items;
 
@@ -32,7 +32,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.UsuariosView
         }
     }
 
-    public ListaAdapter(List<UserItem> items){
+    public ListaUsuariosAdapter(List<UserItem> items){
 
         this.items = items;
 

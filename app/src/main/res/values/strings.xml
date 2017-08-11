@@ -3,5 +3,11 @@
     <string name="seleccionarIdioma">Selecciona tu idioma / Select your language</string>
     <string name="espanol">Español</string>
     <string name="ingles">English</string>
-    <string name="prueba">Prueba</string>
+    <string-array
+        name="string_array_titulos_tabs">
+        <item>Listado</item>
+        <item>Buscar</item>
+        <item>Crear nuevo</item>
+    </string-array>
+
 </resources>

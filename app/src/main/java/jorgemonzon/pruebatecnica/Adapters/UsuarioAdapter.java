@@ -53,7 +53,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
     }
 
     @Override
-    public void onBindViewHolder(UsuarioAdapter.UsuarioViewHolder viewholder, int position) {
+    public void onBindViewHolder(UsuarioViewHolder viewholder, int i) {
 
         viewholder.Id.setText(item.getId());
         viewholder.Name.setText(item.getName());

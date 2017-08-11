@@ -8,7 +8,7 @@
     tools:context="jorgemonzon.pruebatecnica.Activities.MenuActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/reciclador"
+        android:id="@+id/reciclador_activity_listado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
