@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import jorgemonzon.pruebatecnica.Class.ListaUsersObject;
 import jorgemonzon.pruebatecnica.Class.UserItem;
 import jorgemonzon.pruebatecnica.Interfaces.IDataListaUsers;
 import jorgemonzon.pruebatecnica.Interfaces.RestClient;
@@ -45,6 +44,7 @@ public class ConexionManager {
     public void getListaUsers(IDataListaUsers listener){
         listaUsersListener = listener;
         Call<List<UserItem>> call = restClient.getListaUsers();
+        call.toString();
         call.enqueue(new Callback<List<UserItem>>() {
             @Override
             public void onResponse(Call<List<UserItem>> call, Response<List<UserItem>> response) {

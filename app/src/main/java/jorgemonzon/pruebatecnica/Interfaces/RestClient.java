@@ -3,7 +3,6 @@ package jorgemonzon.pruebatecnica.Interfaces;
 import java.util.List;
 
 import jorgemonzon.pruebatecnica.Class.DateTime;
-import jorgemonzon.pruebatecnica.Class.ListaUsersObject;
 import jorgemonzon.pruebatecnica.Class.UserItem;
 import retrofit2.Call;
 import retrofit2.http.Field;

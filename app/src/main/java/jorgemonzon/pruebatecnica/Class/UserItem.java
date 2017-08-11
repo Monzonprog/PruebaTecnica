@@ -7,9 +7,9 @@ package jorgemonzon.pruebatecnica.Class;
 public class UserItem {
 
     private String $type;
-    private int ID;
-    private String Name;
-    private DateTime Birthdate;
+    private int id;
+    private String name;
+    private DateTime birthdate;
 
     public UserItem(){
 
@@ -24,26 +24,26 @@ public class UserItem {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public void setID(int ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public DateTime getBirthdate() {
-        return Birthdate;
+        return birthdate;
     }
 
     public void setBirthdate(DateTime birthdate) {
-        Birthdate = birthdate;
+        birthdate = birthdate;
     }
 }

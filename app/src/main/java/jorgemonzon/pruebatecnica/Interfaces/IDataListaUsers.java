@@ -2,7 +2,6 @@ package jorgemonzon.pruebatecnica.Interfaces;
 
 import java.util.List;
 
-import jorgemonzon.pruebatecnica.Class.ListaUsersObject;
 import jorgemonzon.pruebatecnica.Class.UserItem;
 
 /**
