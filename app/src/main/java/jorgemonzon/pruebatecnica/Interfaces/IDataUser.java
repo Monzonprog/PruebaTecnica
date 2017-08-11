@@ -8,6 +8,6 @@ import jorgemonzon.pruebatecnica.Class.UserItem;
 
 public interface IDataUser {
 
-    void conexionCorrecta(UserItem Usuarios);
+    void conexionCorrecta(UserItem Usuario);
     void conexionIncorrecta();
 }

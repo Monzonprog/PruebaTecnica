@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import jorgemonzon.pruebatecnica.Class.UserItem;
@@ -58,9 +56,17 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.UsuariosView
     @Override
     public void onBindViewHolder(UsuariosViewHolder viewholder, int i) {
 
-        viewholder.Id.setText(items.get(i).getID());
+        viewholder.Id.setText(convertirValor(i));
         viewholder.Name.setText(items.get(i).getName());
-        viewholder.Birthdate.setText(items.get(i).getBirthdate().toString());
+        viewholder.Birthdate.setText(items.get(i).getBirthdate());
+
+    }
+
+    public String convertirValor(int i){
+
+        String ID = Integer.toString(items.get(i).getId());
+
+        return ID;
 
     }
 

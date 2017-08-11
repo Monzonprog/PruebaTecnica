@@ -26,14 +26,14 @@ public interface RestClient {
     Call removeUser(@Query("id")int busquedaUsuario);
 
     @POST("create")
-    Call<UserItem> createUser(@Field("Id") int Id,
-                              @Field("body") String Name,
-                              @Field("userId") DateTime Birthdate);
+    Call<UserItem> createUser(@Field("id") int Id,
+                              @Field("name") String Name,
+                              @Field("birthdate") DateTime Birthdate);
 
     @POST("update")
-    Call<UserItem> updateUser(@Field("Id") int Id,
-                              @Field("body") String Name,
-                              @Field("userId") DateTime Birthdate);
+    Call<UserItem> updateUser(@Field("id") int Id,
+                              @Field("name") String Name,
+                              @Field("birthdate") DateTime Birthdate);
 
 
 }

@@ -6,29 +6,21 @@ package jorgemonzon.pruebatecnica.Class;
 
 public class UserItem {
 
-    private String $type;
     private int id;
     private String name;
-    private DateTime birthdate;
+    private String birthdate;
 
     public UserItem(){
 
     }
 
-    public void set$type(String $type) {
-        this.$type = $type;
-    }
 
-    public String get$type() {
-        return $type;
-    }
-
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int ID) {
-        this.id = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,14 +28,23 @@ public class UserItem {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
-    public DateTime getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(DateTime birthdate) {
-        birthdate = birthdate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return "UserItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                '}';
     }
 }
