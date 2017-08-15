@@ -10,4 +10,6 @@ public interface IDataUser {
 
     void conexionCorrecta(UserItem Usuario);
     void conexionIncorrecta();
+    void conexionNoEncontrado();
+
 }

@@ -32,7 +32,10 @@ public class UserItem {
     }
 
     public String getBirthdate() {
-        return birthdate;
+
+        String fechaMostrar = birthdate.replace("T", " ");
+
+        return fechaMostrar;
     }
 
     public void setBirthdate(String birthdate) {

@@ -3,6 +3,19 @@
     <string name="seleccionarIdioma">Selecciona tu idioma / Select your language</string>
     <string name="espanol">Español</string>
     <string name="ingles">English</string>
+    <string name="idBusqueda">Introduce la ID a buscar</string>
+    <string name="textoVacio">No has introducido ID</string>
+    <string name="errorDescarga">Fallo en la descarga de datos</string>
+    <string name="usuarioNoEncontrado">Usuario no encontrado</string>
+    <string name="falloBorrar">No se ha podido borrar</string>
+    <string name="okBorrar">El registro se ha borrado</string>
+    <string name="filtrarPorIdNombre">Introduce la ID o nombre para filtrar</string>
+    <string name="conexionIncorrecta">Fallo en la descarga de datos</string>
+    <string name="nombreCrearNuevo">Introduce nuevo nombre</string>
+    <string name="botonFecha">Fecha</string>
+    <string name="botonHora">Hora</string>
+    <string name="camposIncompletos">Faltan campos por completar</string>
+    <string name="errorCrearUsuario">Error al crear el usuario</string>
     <string-array
         name="string_array_titulos_tabs">
         <item>Listado</item>
