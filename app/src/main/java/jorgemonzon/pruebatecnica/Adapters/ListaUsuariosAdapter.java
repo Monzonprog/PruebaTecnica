@@ -100,7 +100,7 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
 
     private String convertirValor(int i){
 
-        String ID = Integer.toString(items.get(i).getId());
+        String ID = String.valueOf(items.get(i).getId());
 
         return ID;
 

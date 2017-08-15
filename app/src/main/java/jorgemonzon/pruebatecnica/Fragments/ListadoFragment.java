@@ -250,7 +250,7 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
     public void actualizarUsuario(){
 
         fechaParaGuardar = fechaEditTextDialog.getText().toString() + "T" +
-                horaEditTextDialog.getText().toString() + ":00";
+                horaEditTextDialog.getText().toString();
 
         ConexionManager conexion = new ConexionManager("http://hello-world.innocv.com/api/user/");
         conexion.updateUser(this, usuario,nombreEditTextDialog.getText()
@@ -288,6 +288,7 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
     @Override
     public void conexionIncorrectaModificarUser() {
 
+        Toast.makeText(getActivity(),getString(R.string.errorModificar), Toast.LENGTH_LONG).show();
 
     }
 
