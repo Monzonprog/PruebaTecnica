@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jorgemonzon.pruebatecnica.Class.UserItem;
-import jorgemonzon.pruebatecnica.Interfaces.IDataUserModificar;
+import jorgemonzon.pruebatecnica.Interfaces.IDataUserOpcionesCard;
 import jorgemonzon.pruebatecnica.R;
 
 /**
@@ -20,7 +20,7 @@ import jorgemonzon.pruebatecnica.R;
 public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdapter.UsuariosViewHolder> {
 
     private List<UserItem> items;
-    private IDataUserModificar listener;
+    private IDataUserOpcionesCard listener;
     private TextWatcher listenerTextWatcher;
 
     public void setListener(TextWatcher textWatcher) {
@@ -88,6 +88,14 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
             }
         });
 
+        viewholder.EditarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.modificaUser(convertirValor(i));
+
+            }
+        });
+
     }
 
     private String convertirValor(int i){
@@ -98,7 +106,7 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
 
     }
 
-    public void setListener (IDataUserModificar listener){
+    public void setListener (IDataUserOpcionesCard listener){
         this.listener = listener;
     }
 

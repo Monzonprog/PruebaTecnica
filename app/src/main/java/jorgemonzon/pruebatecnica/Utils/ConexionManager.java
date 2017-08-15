@@ -12,6 +12,8 @@ import jorgemonzon.pruebatecnica.Interfaces.IDataListaUsers;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUser;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUserBorrar;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUserCrear;
+import jorgemonzon.pruebatecnica.Interfaces.IDataUserModificar;
+import jorgemonzon.pruebatecnica.Interfaces.IDataUserOpcionesCard;
 import jorgemonzon.pruebatecnica.Interfaces.RestClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -19,8 +21,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.R.attr.data;
 
 /**
  * Created by jorge on 11/08/17.
@@ -35,6 +35,7 @@ public class ConexionManager {
     private IDataUser userListener;
     private IDataUserBorrar borrarListener;
     private IDataUserCrear crearListener;
+    private IDataUserModificar modificarListener;
 
     public ConexionManager(String url) {
 
@@ -172,6 +173,37 @@ public class ConexionManager {
             @Override
             public void onFailure(Call<UserItem> call, Throwable t) {
                 crearListener.conexionIncorrectaCrearUser();
+
+                Log.e("error", t.toString());
+            }
+
+        });
+    }
+
+    public void updateUser(IDataUserModificar listener, int id, String nombreUsuario, String fechaUsuario) {
+        modificarListener = listener;
+        Call<UserItem> call = restClient.updateUser(id, nombreUsuario, fechaUsuario);
+        call.enqueue(new Callback<UserItem>() {
+            @Override
+            public void onResponse(Call<UserItem> call, Response<UserItem> response) {
+                switch (response.code()) {
+                    case 200:
+                        UserItem data = response.body();
+                        modificarListener.conexionCorrectaModificarUser(data);
+                        break;
+                    case 401:
+                        modificarListener.conexionIncorrectaModificarUser();
+                        break;
+                    default:
+                        modificarListener.conexionIncorrectaModificarUser();
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserItem> call, Throwable t) {
+                modificarListener.conexionIncorrectaModificarUser();
 
                 Log.e("error", t.toString());
             }

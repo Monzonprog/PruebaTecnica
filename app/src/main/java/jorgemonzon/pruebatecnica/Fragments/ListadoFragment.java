@@ -1,8 +1,11 @@
 package jorgemonzon.pruebatecnica.Fragments;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -10,16 +13,23 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import jorgemonzon.pruebatecnica.Adapters.ListaUsuariosAdapter;
 import jorgemonzon.pruebatecnica.Class.UserItem;
 import jorgemonzon.pruebatecnica.Interfaces.IDataListaUsers;
+import jorgemonzon.pruebatecnica.Interfaces.IDataUser;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUserBorrar;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUserModificar;
+import jorgemonzon.pruebatecnica.Interfaces.IDataUserOpcionesCard;
 import jorgemonzon.pruebatecnica.R;
 import jorgemonzon.pruebatecnica.Utils.ConexionManager;
 
@@ -27,7 +37,7 @@ import jorgemonzon.pruebatecnica.Utils.ConexionManager;
  * Created by jorge on 11/08/17.
  */
 
-public class ListadoFragment extends Fragment implements IDataListaUsers, IDataUserModificar,IDataUserBorrar {
+public class ListadoFragment extends Fragment implements IDataListaUsers, IDataUserOpcionesCard,IDataUserBorrar, IDataUserModificar, IDataUser {
 
     private RecyclerView recycler;
     private ListaUsuariosAdapter adapter;
@@ -35,6 +45,10 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
     private ArrayList<UserItem> usuariosTotales;
     private ArrayList<UserItem> usuariosFiltrados;
     private TextInputEditText filtrado;
+    private EditText fechaEditTextDialog, horaEditTextDialog, nombreEditTextDialog;
+    private Button buttonCancelarDialog, buttonGuardarDialog;
+    private int usuario;
+    private String fechaParaGuardar;
 
 
     public ListadoFragment() {
@@ -134,6 +148,115 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
 
     }
 
+    @Override
+    public void conexionCorrecta(final UserItem Usuario) {
+
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.dialog_modificar);
+        nombreEditTextDialog = (EditText) dialog.findViewById(R.id.nombreEditTextDialog);
+        fechaEditTextDialog = (EditText) dialog.findViewById(R.id.fechaEditTextDialog);
+        horaEditTextDialog = (EditText) dialog.findViewById(R.id.horaEditTextDialog);
+
+        String fechaCompleta = Usuario.getBirthdate().toString();
+        String [] fechaYhora =  fechaCompleta.split(" ");
+        fechaEditTextDialog.setText(fechaYhora[0]);
+        horaEditTextDialog.setText(fechaYhora[1]);
+        nombreEditTextDialog.setText(Usuario.getName());
+        usuario = Usuario.getId();
+
+        buttonCancelarDialog = (Button) dialog.findViewById(R.id.buttonCancelarDialog);
+        buttonGuardarDialog = (Button) dialog.findViewById(R.id.buttonGuardarDialog);
+
+        dialog.show();
+
+        fechaEditTextDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int mYear, mMonth, mDay;
+
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                fechaEditTextDialog.setText(year + "-" + (monthOfYear + 1) +
+                                        "-" + dayOfMonth);
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+
+
+
+            }
+        });
+
+        horaEditTextDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int mHour, mMinute;
+
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+
+                                horaEditTextDialog.setText( String.format("%02d:%02d", hourOfDay,
+                                        minute));
+
+
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+
+            }
+        });
+
+
+        buttonCancelarDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.cancel();
+
+            }
+        });
+
+        buttonGuardarDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                actualizarUsuario();
+                dialog.cancel();
+
+            }
+        });
+    }
+
+    public void actualizarUsuario(){
+
+        fechaParaGuardar = fechaEditTextDialog.getText().toString() + "T" +
+                horaEditTextDialog.getText().toString() + ":00";
+
+        ConexionManager conexion = new ConexionManager("http://hello-world.innocv.com/api/user/");
+        conexion.updateUser(this, usuario,nombreEditTextDialog.getText()
+                .toString(), fechaParaGuardar);
+
+    }
 
     @Override
     public void conexionIncorrecta() {
@@ -143,7 +266,28 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
     }
 
     @Override
+    public void conexionNoEncontrado() {
+
+    }
+
+    @Override
     public void modificaUser(String id) {
+
+        ConexionManager conexion = new ConexionManager("http://hello-world.innocv.com/api/user/");
+        conexion.getUser(this, Integer.valueOf(id));
+    }
+
+    @Override
+    public void conexionCorrectaModificarUser(UserItem usuario) {
+
+        obtenerListaUsuarios();
+        Toast.makeText(getActivity(),getString(R.string.okModificar), Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void conexionIncorrectaModificarUser() {
+
 
     }
 
@@ -168,4 +312,6 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
         Toast.makeText(getActivity(),getString(R.string.falloBorrar), Toast.LENGTH_LONG).show();
 
     }
+
+
 }

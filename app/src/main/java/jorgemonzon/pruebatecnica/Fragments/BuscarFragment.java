@@ -118,7 +118,7 @@ public class BuscarFragment extends Fragment implements IDataUser {
 
     }
 
-    private void obtenerUsuario(int usuarioBuscarINT) {
+    public void obtenerUsuario(int usuarioBuscarINT) {
 
         ConexionManager conexion = new ConexionManager("http://hello-world.innocv.com/api/user/");
         conexion.getUser(this, usuarioBuscarINT);

@@ -16,6 +16,10 @@
     <string name="botonHora">Hora</string>
     <string name="camposIncompletos">Faltan campos por completar</string>
     <string name="errorCrearUsuario">Error al crear el usuario</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardarCambios">Guardar</string>
+    <string name="editarUsuario">Editar usuario</string>
+    <string name="okModificar">El registro se ha modificado</string>
     <string-array
         name="string_array_titulos_tabs">
         <item>Listado</item>

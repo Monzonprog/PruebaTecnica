@@ -1,10 +1,13 @@
 package jorgemonzon.pruebatecnica.Interfaces;
 
+import jorgemonzon.pruebatecnica.Class.UserItem;
+
 /**
- * Created by jorge on 12/08/17.
+ * Created by jorge on 15/08/17.
  */
 
 public interface IDataUserModificar {
-    void modificaUser(String id);
-    void borrarUser(String id);
+
+    void conexionCorrectaModificarUser(UserItem usuario);
+    void conexionIncorrectaModificarUser();
 }

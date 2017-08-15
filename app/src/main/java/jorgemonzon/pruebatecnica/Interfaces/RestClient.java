@@ -31,6 +31,7 @@ public interface RestClient {
     Call<UserItem> createUser(@Field("name") String Name,
                               @Field("birthdate") String Birthdate);
 
+    @FormUrlEncoded
     @POST("update")
     Call<UserItem> updateUser(@Field("id") int Id,
                               @Field("name") String Name,

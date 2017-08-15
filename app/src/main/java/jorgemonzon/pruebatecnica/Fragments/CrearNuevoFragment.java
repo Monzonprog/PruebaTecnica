@@ -145,7 +145,7 @@ public class CrearNuevoFragment extends Fragment implements
                                               int monthOfYear, int dayOfMonth) {
 
                             fechaTextViewCrearNuevo.setText(year + "-" + (monthOfYear + 1) +  "-" + dayOfMonth);
-                                   // dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
 
                         }
                     }, mYear, mMonth, mDay);
