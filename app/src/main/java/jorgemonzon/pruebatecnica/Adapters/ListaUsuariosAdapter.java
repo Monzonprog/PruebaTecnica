@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jorgemonzon.pruebatecnica.Class.UserItem;
+import jorgemonzon.pruebatecnica.Fragments.ListadoFragment;
 import jorgemonzon.pruebatecnica.Interfaces.IDataUserOpcionesCard;
 import jorgemonzon.pruebatecnica.R;
 
@@ -21,13 +22,6 @@ public class ListaUsuariosAdapter extends RecyclerView.Adapter<ListaUsuariosAdap
 
     private List<UserItem> items;
     private IDataUserOpcionesCard listener;
-    private TextWatcher listenerTextWatcher;
-
-    public void setListener(TextWatcher textWatcher) {
-
-        this.listenerTextWatcher = textWatcher;
-    }
-
 
     public static class UsuariosViewHolder extends RecyclerView.ViewHolder {
 

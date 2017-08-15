@@ -135,7 +135,7 @@ public class ListadoFragment extends Fragment implements IDataListaUsers, IDataU
                     }
                 }
                 adapter = new ListaUsuariosAdapter(usuariosFiltrados);
-                adapter.setListener(this);
+                adapter.setListener(ListadoFragment.this);
                 recycler.setAdapter(adapter);
 
             }
